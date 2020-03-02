@@ -352,8 +352,11 @@ namespace vez
             // Encode the command, along with the pipeline's layout and shader stages push constant is used in, to the memory stream.
             auto layout = pipeline->GetPipelineLayout();
             auto shaderStages = pipeline->GetPushConstantsRangeStages(offset, size);
-            m_stream << PUSH_CONSTANTS << layout << shaderStages << offset << size;
-            m_stream.Write(pValues, static_cast<uint64_t>(size));
+            if (shaderStages > 0)
+            {
+                m_stream << PUSH_CONSTANTS << layout << shaderStages << offset << size;
+                m_stream.Write(pValues, static_cast<uint64_t>(size));
+            }
         }
     }
 
@@ -379,6 +382,12 @@ namespace vez
     {
         // Track resource bindings.  Do not encode in stream.
         m_resourceBindings.BindSampler(sampler, set, binding, arrayElement);
+    }
+
+    void StreamEncoder::CmdBindCombinedImageSampler(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement)
+    {
+        // Track resource bindings.  Do not encode in stream.
+        m_resourceBindings.BindCombinedImageSampler(pImageView, sampler, set, binding, arrayElement);
     }
 
     void StreamEncoder::CmdBindVertexBuffers(uint32_t firstBinding, uint32_t bindingCount, Buffer** ppBuffers, const VkDeviceSize* pOffsets)

@@ -67,6 +67,7 @@ namespace vez
         void BindBufferView(BufferView* pBufferView, uint32_t set, uint32_t binding, uint32_t arrayElement);
         void BindImageView(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement);
         void BindSampler(VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement);
+        void BindCombinedImageSampler(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement);
 
     private:
         void Bind(uint32_t set, uint32_t binding, uint32_t arrayElement, const BindingInfo& info);

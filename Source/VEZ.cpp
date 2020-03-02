@@ -1002,6 +1002,16 @@ void VKAPI_CALL vezCmdBindSampler(VkSampler sampler, uint32_t set, uint32_t bind
     s_pActiveCommandBuffer->CmdBindSampler(sampler, set, binding, arrayElement);
 }
 
+void VKAPI_CALL vezCmdBindCombinedImageSampler(VkImageView imageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement)
+{
+    // Lookup ImageView object handle.
+    auto imageViewImpl = vez::ObjectLookup::GetObjectImpl(imageView);
+    if (!imageViewImpl)
+        return;
+
+    s_pActiveCommandBuffer->CmdBindCombinedImageSampler(imageViewImpl, sampler, set, binding, arrayElement);
+}
+
 void VKAPI_CALL vezCmdBindVertexBuffers(uint32_t firstBinding, uint32_t bindingCount, const VkBuffer* pBuffers, const VkDeviceSize* pOffset)
 {
     // Lookup Buffer object handles.

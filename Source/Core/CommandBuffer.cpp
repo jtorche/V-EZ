@@ -156,6 +156,11 @@ namespace vez
         m_streamEncoder.CmdBindSampler(sampler, set, binding, arrayElement);
     }
 
+    void CommandBuffer::CmdBindCombinedImageSampler(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement)
+    {
+        m_streamEncoder.CmdBindCombinedImageSampler(pImageView, sampler, set, binding, arrayElement);
+    }
+
     void CommandBuffer::CmdBindVertexBuffers(uint32_t firstBinding, uint32_t bindingCount, Buffer** ppBuffers, const VkDeviceSize* pOffsets)
     {
         m_streamEncoder.CmdBindVertexBuffers(firstBinding, bindingCount, ppBuffers, pOffsets);

@@ -54,6 +54,11 @@ namespace vez
         Bind(set, binding, arrayElement, BindingInfo{ 0, 0, VK_NULL_HANDLE, VK_NULL_HANDLE, VK_NULL_HANDLE, sampler, true });
     }
 
+    void ResourceBindings::BindCombinedImageSampler(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement)
+    {
+        Bind(set, binding, arrayElement, BindingInfo{ 0, 0, VK_NULL_HANDLE, VK_NULL_HANDLE, pImageView, sampler, true });
+    }
+
     void ResourceBindings::Bind(uint32_t set, uint32_t binding, uint32_t arrayElement, const BindingInfo& info)
     {
         // If resource is being removed from binding, erase the entry.

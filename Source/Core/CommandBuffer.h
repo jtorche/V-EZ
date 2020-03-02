@@ -62,6 +62,7 @@ namespace vez
         void CmdBindBufferView(BufferView* pBufferView, uint32_t set, uint32_t binding, uint32_t arrayElement);
         void CmdBindImageView(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement);
         void CmdBindSampler(VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement);
+        void CmdBindCombinedImageSampler(ImageView* pImageView, VkSampler sampler, uint32_t set, uint32_t binding, uint32_t arrayElement);
         void CmdBindVertexBuffers(uint32_t firstBinding, uint32_t bindingCount, Buffer** ppBuffers, const VkDeviceSize* pOffsets);
         void CmdBindIndexBuffer(Buffer* pBuffer, VkDeviceSize offset, VkIndexType indexType);
         void CmdSetVertexInputFormat(VertexInputFormat* pFormat);
